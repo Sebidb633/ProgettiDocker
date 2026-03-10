@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/sebidb633/progettidocker/SAMT3D-api:latest
+    image: ghcr.io/sebidb633/progettidocker/samt3d-api:latest
     ports:
       - "4000:4000"
     restart: always
@@ -12,7 +12,7 @@ services:
       - DB_PASSWORD=''
 
   db:
-    image: ghcr.io/sebidb633/progettidocker/SAMT3D-db:latest
+    image: ghcr.io/sebidb633/progettidocker/samt3d-db:latest
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=''
