@@ -125,6 +125,21 @@ CREATE TABLE IF NOT EXISTS `SAMT3D`.`npcs` (
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `samt3d`.`quizzes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `samt3d`.`quizzes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `question` VARCHAR(255) NULL,
+  `answer` VARCHAR(255) NULL,
+  `class_id` INT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`class_id`)
+  REFERENCES `samt3d`.`classrooms` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

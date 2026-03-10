@@ -16,6 +16,21 @@ const getClassPoster = async (req,res) => {
     }
 }
 
+const getClassQuiz = async (req,res) => {
+    try{
+        const { id } = req.params;
+        const quiz = await classService.getClassQuiz(id);
+        if (!quiz){
+            return res.status(404).json({ message: "Domanda non trovata" })
+        }
+
+        return res.status(200).json(quiz);
+    }catch (err){
+        console.error(err);
+        res.status(500).json({ error: 'Errore nel recupero della classe' });
+    }
+}
+
 const updateDoorStatus = async (req,res) => {
     try{
         const { id } = req.params;
@@ -34,4 +49,4 @@ const updateDoorStatus = async (req,res) => {
     }
 }
 
-module.exports = { getClassPoster, updateDoorStatus }
+module.exports = { getClassPoster, getClassQuiz, updateDoorStatus }

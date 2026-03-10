@@ -7,9 +7,12 @@ desc npcs;
 desc posters;
 desc statistics;
 desc subjects;
+desc quizzes;
+desc total_daily_stats;
 
 select * from audio;
 select * from classrooms;
+select * from quizzes;
 select * from descriptions;
 select * from npcs;
 select * from posters;
@@ -19,6 +22,7 @@ select * from total_daily_stats;
 
 -- truncate audio;
 -- truncate classrooms;
+-- truncate quizzes;
 -- truncate descriptions;
 -- truncate npcs;
 -- truncate posters;
@@ -38,15 +42,15 @@ select
 from statistics
 group by date(created_at);
 
-insert into classrooms(class_num,isDoorOpen) value (417,true);
-insert into classrooms(class_num,isDoorOpen) value (420,true);
-insert into classrooms(class_num,isDoorOpen) value (421,true);
-insert into classrooms(class_num,isDoorOpen) value (423,true);
-insert into classrooms(class_num,isDoorOpen) value (424,true);
-insert into classrooms(class_num,isDoorOpen) value (425,true);
-insert into classrooms(class_num,isDoorOpen) value (427,true);
-insert into classrooms(class_num,isDoorOpen) value (428,true);
-insert into classrooms(class_num,isDoorOpen) value (430,true);
+insert into classrooms(class_num,isDoorOpen) values (417,true),
+(420,true),
+(421,true),
+(423,true),
+(424,true),
+(425,true),
+(427,true),
+(428,true),
+(430,true);
 
 insert into subjects(name,class_id) values ('151',9),
 ('133',9),
@@ -78,6 +82,8 @@ insert into posters(class_id,description_id,image_url) values (1,1,'img_1.jpeg')
 
 -- update posters set class_id = 1 where class_id = 3;
 
+-- update quizzes set answer = "Motherboard" where class_id = 2;
+
 insert into npcs(class_id,description_id) values (1,4),
 (3,2),
 (5,1),
@@ -87,6 +93,9 @@ INSERT INTO statistics (developer_percent, system_engineers_percent, daily_playe
 (45.5, 54.5, 120, 15, '00:15:30', 1),
 (30.2, 69.8, 85, 10, '00:10:45', 2),
 (25.0, 75.0, 200, 25, '00:22:00', 3);
+
+insert into quizzes(question,answer,class_id) values ('Che linguaggi servono per creare una pagina Web?','HTML,CSS,JavaScript',1),
+('Dove si trova la cpu','Motherboard',2);
 
 insert into audio(description_id) values (1),
 (2),
