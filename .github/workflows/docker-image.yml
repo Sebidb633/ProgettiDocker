@@ -27,14 +27,14 @@ jobs:
       with:
         context: ./5_Sito/API
         push: true
-        tags: ghcr.io/sebidb663/progettidocker/samt3d-api:latest
+        tags: ghcr.io/sebidb633/progettidocker/samt3d-api:latest
     
     - name: Build and Push DB image
       uses: docker/build-push-action@v5
       with:
         context: ./6_Database
         push: true
-        tags: ghcr.io/sebidb663/progettidocker/samt3d-db:latest
+        tags: ghcr.io/sebidb633/progettidocker/samt3d-db:latest
 
 # jobs:
 
