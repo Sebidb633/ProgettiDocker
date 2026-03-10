@@ -7,6 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+RUN chmod +x ./node_modules/.bin/prisma
 RUN ./node_modules/.bin/prisma generate
 EXPOSE 4000
 CMD [ "node", "app.js" ]
