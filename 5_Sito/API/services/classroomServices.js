@@ -2,8 +2,8 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const getClassPoster = async (classId) => {
-    // const SERVER_IP = '172.19.134.164';
-    const SERVER_IP = '127.0.0.1';
+    const SERVER_IP = '10.4.0.21';
+    // const SERVER_IP = '127.0.0.1';
     const PORT = '4000';
 
     const getClassroom = await prisma.classrooms.findUnique({
