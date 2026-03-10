@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema SAMT3D
+-- Schema samt3d
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema SAMT3D
+-- Schema samt3d
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `SAMT3D` DEFAULT CHARACTER SET utf8 ;
-USE `SAMT3D` ;
+CREATE SCHEMA IF NOT EXISTS `samt3d` DEFAULT CHARACTER SET utf8 ;
+USE `samt3d` ;
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`classrooms`
+-- Table `samt3d`.`classrooms`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`classrooms` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`classrooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `class_num` INT NULL,
   `isDoorOpen` TINYINT NULL,
@@ -29,24 +29,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`subjects`
+-- Table `samt3d`.`subjects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`subjects` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`subjects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `class_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `SAMT3D`.`classrooms` (`id`)
+  REFERENCES `samt3d`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`statistics`
+-- Table `samt3d`.`statistics`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`statistics` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`statistics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `developer_percent` FLOAT NULL,
   `system_engineers_percent` FLOAT NULL,
@@ -56,16 +56,16 @@ CREATE TABLE IF NOT EXISTS `SAMT3D`.`statistics` (
   `subject_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`subject_id`)
-  REFERENCES `SAMT3D`.`subjects` (`id`)
+  REFERENCES `samt3d`.`subjects` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`descriptions`
+-- Table `samt3d`.`descriptions`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`descriptions` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`descriptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -73,54 +73,54 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`posters`
+-- Table `samt3d`.`posters`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`posters` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`posters` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `class_id` INT NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `SAMT3D`.`classrooms` (`id`)
+  REFERENCES `samt3d`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE,
   FOREIGN KEY (`description_id`)
-  REFERENCES `SAMT3D`.`descriptions` (`id`)
+  REFERENCES `samt3d`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`audio`
+-- Table `samt3d`.`audio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`audio` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`audio` (
   `id` INT ZEROFILL NOT NULL,
   `audio_url` VARCHAR(255) NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`description_id`)
-  REFERENCES `SAMT3D`.`descriptions` (`id`)
+  REFERENCES `samt3d`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `SAMT3D`.`npcs`
+-- Table `samt3d`.`npcs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SAMT3D`.`npcs` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`npcs` (
   `id` INT ZEROFILL NOT NULL,
   `class_id` INT NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `SAMT3D`.`classrooms` (`id`)
+  REFERENCES `samt3d`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE,
   FOREIGN KEY (`description_id`)
-  REFERENCES `SAMT3D`.`descriptions` (`id`)
+  REFERENCES `samt3d`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
