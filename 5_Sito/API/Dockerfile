@@ -1,9 +1,9 @@
 # Dockerfile API
 FROM node:20-slim
-RUN apt-get update -y && apt-get install -y openssl libssl-dev
+RUN apt-get update -y && apt-get install -y openssl libssl-dev ca-certificates
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
 COPY . .
 RUN npx prisma generate
 EXPOSE 4000
