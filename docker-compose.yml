@@ -1,0 +1,24 @@
+services:
+  api:
+    image: ghcr.io/sebidb633/progettidocker/SAMT3D-api:latest
+    ports:
+      - "4000:4000"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=''
+
+  db:
+    image: ghcr.io/sebidb633/progettidocker/SAMT3D-db:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=''
+      - MYSQL_DATABASE=SAMT3D
+    volumes:
+      - ./db_data/var/lib/mysql
+
+  volumes:
+    db_data:
