@@ -20,7 +20,7 @@ USE `samt3d` ;
 -- -----------------------------------------------------
 -- Table `samt3d`.`classrooms`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`classrooms` (
+CREATE TABLE IF NOT EXISTS `classrooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `class_num` INT NULL,
   `isDoorOpen` TINYINT NULL,
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`subjects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`subjects` (
+CREATE TABLE IF NOT EXISTS `subjects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `class_id` INT NULL,
@@ -46,7 +46,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`statistics`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`statistics` (
+CREATE TABLE IF NOT EXISTS `statistics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `developer_percent` FLOAT NULL,
   `system_engineers_percent` FLOAT NULL,
@@ -65,7 +65,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`descriptions`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`descriptions` (
+CREATE TABLE IF NOT EXISTS `descriptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`posters`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`posters` (
+CREATE TABLE IF NOT EXISTS `posters` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `class_id` INT NULL,
@@ -95,7 +95,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`audio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`audio` (
+CREATE TABLE IF NOT EXISTS `audio` (
   `id` INT ZEROFILL NOT NULL,
   `audio_url` VARCHAR(255) NULL,
   `description_id` INT NULL,
@@ -110,7 +110,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`npcs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`npcs` (
+CREATE TABLE IF NOT EXISTS `npcs` (
   `id` INT ZEROFILL NOT NULL,
   `class_id` INT NULL,
   `description_id` INT NULL,
@@ -128,7 +128,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`quizzes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `samt3d`.`quizzes` (
+CREATE TABLE IF NOT EXISTS `quizzes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `question` VARCHAR(255) NULL,
   `answer` VARCHAR(255) NULL,
