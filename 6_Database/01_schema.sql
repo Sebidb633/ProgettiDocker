@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `statistics` (
   `developer_percent` FLOAT NULL,
   `system_engineers_percent` FLOAT NULL,
   `daily_player` INT NULL,
-  `classrom_visited` INT NULL,
+  `classroom_visited` INT NULL,
   `visiting_time` TIME NULL,
   `subject_id` INT NULL,
   PRIMARY KEY (`id`),
