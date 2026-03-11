@@ -1,24 +1,24 @@
 use samt3d;
-show tables;
-desc audio;
-desc classrooms;
-desc descriptions;
-desc npcs;
-desc posters;
-desc statistics;
-desc subjects;
-desc quizzes;
-desc total_daily_stats;
-
-select * from audio;
-select * from classrooms;
-select * from quizzes;
-select * from descriptions;
-select * from npcs;
-select * from posters;
-select * from statistics;
-select * from subjects;
-select * from total_daily_stats;
+-- show tables;
+-- desc audio;
+-- desc classrooms;
+-- desc descriptions;
+-- desc npcs;
+-- desc posters;
+-- desc statistics;
+-- desc subjects;
+-- desc quizzes;
+-- desc total_daily_stats;
+-- 
+-- select * from audio;
+-- select * from classrooms;
+-- select * from quizzes;
+-- select * from descriptions;
+-- select * from npcs;
+-- select * from posters;
+-- select * from statistics;
+-- select * from subjects;
+-- select * from total_daily_stats;
 
 -- truncate audio;
 -- truncate classrooms;
