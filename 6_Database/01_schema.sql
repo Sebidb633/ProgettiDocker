@@ -140,6 +140,18 @@ CREATE TABLE IF NOT EXISTS `quizzes` (
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+create view total_daily_stats as 
+select
+	date(created_at) as stats_date,
+	count(*) as total_entries,
+	sum(daily_player) as total_players,
+	sum(classroom_visited) as total_classrooms_visited,
+	round(avg(developer_percent)) as total_developer_percent,
+	round(avg(system_engineers_percent)) as total_system_engineers_percent,
+	sec_to_time(sum(time_to_sec(visiting_time))) as total_visiting_time
+from statistics
+group by date(created_at);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
