@@ -3,8 +3,8 @@ services:
     image: ghcr.io/sebidb633/progettidocker/samt3d-db:latest
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=''
-      - MYSQL_DATABASE=SAMT3D
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=samt3d
     volumes:
       - samt3d_db_data:/var/lib/mysql
 
@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=mysql://root:root_password@db:3306/SAMT3D'
+      - DATABASE_URL=mysql://root:root_password@db:3306/samt3d
 
 volumes:
   samt3d_db_data:
