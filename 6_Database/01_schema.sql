@@ -96,7 +96,7 @@ ENGINE = InnoDB;
 -- Table `samt3d`.`audio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `audio` (
-  `id` INT ZEROFILL NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `audio_url` VARCHAR(255) NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
@@ -111,7 +111,7 @@ ENGINE = InnoDB;
 -- Table `samt3d`.`npcs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `npcs` (
-  `id` INT ZEROFILL NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `class_id` INT NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
