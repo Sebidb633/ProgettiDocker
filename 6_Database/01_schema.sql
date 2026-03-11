@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `statistics` (
   `classroom_visited` INT NULL,
   `visiting_time` TIME NULL,
   `subject_id` INT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`subject_id`)
   REFERENCES `samt3d`.`subjects` (`id`)

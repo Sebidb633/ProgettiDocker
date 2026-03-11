@@ -34,7 +34,7 @@ const getClassQuiz = async (classId) => {
             id: Number(classId)
         },
         include: {
-            quiz: true
+            quizzes: true
         }
     })
 }
