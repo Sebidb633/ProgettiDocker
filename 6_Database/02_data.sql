@@ -26,11 +26,11 @@ insert into samt3d.posters(class_id,description_id,image_url) values (1,1,'img_1
 (1,3,'img_3.jpg'),
 (1,4,'img_4.jpg'),
 (2,4,'img_1.jpeg'),
-(2,2,'img_2.jpeg'),
+(2,3,'img_2.jpeg'),
 (3,4,'img_3.jpeg'),
-(3,3,'img_4.jpeg'),
-(4,2,'img_3.jpg'),
-(4,4,'img_4.jpg');
+(3,2,'img_4.jpeg'),
+(4,2,'img_1.jpg'),
+(4,4,'img_2.jpg');
 
 insert into samt3d.npcs(class_id,description_id) values (1,4),
 (3,2),

@@ -22,7 +22,7 @@ const getClassPoster = async (classId) => {
     if (getClassroom && getClassroom.posters){
         getClassroom.posters = getClassroom.posters.map(poster => ({
             ...poster,
-            image_url: `http://${SERVER_IP}:${PORT}/uploads/${poster.image_url}`
+            image_url: `http://${SERVER_IP}:${PORT}/uploads/image/${poster.image_url}`
         }))
     }
     return getClassroom;

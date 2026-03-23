@@ -8,7 +8,10 @@ const getAllNpcDescription = async () => {
 }
 
 const getNpcDescription = async (npcId) => {
-    return await prisma.npcs.findUnique({
+    const SERVER_IP = '10.4.0.21';
+    // const SERVER_IP = '127.0.0.1';
+    const PORT = '4000';
+    const npcData = await prisma.npcs.findUnique({
         where: {
             id: Number(npcId)
         },
@@ -20,6 +23,14 @@ const getNpcDescription = async (npcId) => {
             }
         }
     });
+
+    if (npcData && npcData.descriptions && npcData.descriptions.audio.length > 0) {
+        npcData.descriptions.audio = npcData.descriptions.audio.map(a => ({
+            ...a,
+            audio_url: a.audio_url ? `http://${SERVER_IP}:${PORT}/uploads/audio/${a.audio_url}` : null
+        }));
+    }
+    return npcData;
 }
 
 const insertNpc = async (npcData) => {
