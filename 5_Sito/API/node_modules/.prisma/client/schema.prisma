@@ -83,11 +83,12 @@ model subjects {
 }
 
 model quizzes {
-  id         Int         @id @default(autoincrement())
-  question   String?     @db.VarChar(255)
-  answer     String?     @db.VarChar(255)
-  class_id   Int?
-  classrooms classrooms? @relation(fields: [class_id], references: [id], onDelete: Cascade, map: "quizzes_ibfk_1")
+  id            Int         @id @default(autoincrement())
+  question      String?     @db.VarChar(255)
+  answer        String?     @db.VarChar(255)
+  question_type String?     @db.VarChar(45)
+  class_id      Int?
+  classrooms    classrooms? @relation(fields: [class_id], references: [id], onDelete: Cascade, map: "quizzes_ibfk_1")
 
   @@index([class_id], map: "class_id")
 }
