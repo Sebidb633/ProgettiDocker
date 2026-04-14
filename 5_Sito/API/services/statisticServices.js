@@ -2,9 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const getAllStatistics = async () => {
-    return await prisma.statistics.findMany({
-        include: { subjects: true }
-    });
+    return await prisma.statistics.findMany();
 }
 
 const insertNewStatistic = async (statisticData) => {
@@ -16,8 +14,7 @@ const insertNewStatistic = async (statisticData) => {
             system_engineers_percent: statisticData.system_engineers_percent,
             daily_player: statisticData.daily_player,
             classroom_visited: statisticData.classroom_visited,
-            visiting_time: time,
-            subject_id: statisticData.subject_id
+            visiting_time: time
         }
     });
 }

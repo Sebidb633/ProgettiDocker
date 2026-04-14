@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema samt3d
+-- Schema SAMT3D
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema samt3d
+-- Schema SAMT3D
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `samt3d` DEFAULT CHARACTER SET utf8 ;
-USE `samt3d` ;
+CREATE SCHEMA IF NOT EXISTS `SAMT3D` DEFAULT CHARACTER SET utf8 ;
+USE `SAMT3D` ;
 
 -- -----------------------------------------------------
--- Table `samt3d`.`classrooms`
+-- Table `SAMT3D`.`classrooms`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `classrooms` (
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`classrooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `class_num` INT NULL,
   `isDoorOpen` TINYINT NULL,
@@ -29,44 +29,38 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`subjects`
+-- Table `SAMT3D`.`subjects`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `subjects` (
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`subjects` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `class_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `samt3d`.`classrooms` (`id`)
+  REFERENCES `SAMT3D`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`statistics`
+-- Table `SAMT3D`.`statistics`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `statistics` (
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`statistics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `developer_percent` FLOAT NULL,
   `system_engineers_percent` FLOAT NULL,
-  `daily_player` INT NULL,
-  `classroom_visited` INT NULL,
+  `classrom_visited` INT NULL,
   `visiting_time` TIME NULL,
-  `subject_id` INT NULL,
-  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`subject_id`)
-  REFERENCES `samt3d`.`subjects` (`id`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE)
+  PRIMARY KEY (`id`)
+  )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`descriptions`
+-- Table `SAMT3D`.`descriptions`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `descriptions` (
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`descriptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -74,54 +68,54 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`posters`
+-- Table `SAMT3D`.`posters`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `posters` (
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`posters` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `class_id` INT NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `samt3d`.`classrooms` (`id`)
+  REFERENCES `SAMT3D`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE,
   FOREIGN KEY (`description_id`)
-  REFERENCES `samt3d`.`descriptions` (`id`)
+  REFERENCES `SAMT3D`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`audio`
+-- Table `SAMT3D`.`audio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `audio` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`audio` (
+  `id` INT ZEROFILL NOT NULL,
   `audio_url` VARCHAR(255) NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`description_id`)
-  REFERENCES `samt3d`.`descriptions` (`id`)
+  REFERENCES `SAMT3D`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `samt3d`.`npcs`
+-- Table `SAMT3D`.`npcs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `npcs` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `SAMT3D`.`npcs` (
+  `id` INT ZEROFILL NOT NULL,
   `class_id` INT NULL,
   `description_id` INT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`class_id`)
-  REFERENCES `samt3d`.`classrooms` (`id`)
+  REFERENCES `SAMT3D`.`classrooms` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE,
   FOREIGN KEY (`description_id`)
-  REFERENCES `samt3d`.`descriptions` (`id`)
+  REFERENCES `SAMT3D`.`descriptions` (`id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -129,7 +123,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `samt3d`.`quizzes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `quizzes` (
+CREATE TABLE IF NOT EXISTS `samt3d`.`quizzes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `question` VARCHAR(255) NULL,
   `answer` VARCHAR(255) NULL,
@@ -141,18 +135,16 @@ CREATE TABLE IF NOT EXISTS `quizzes` (
   ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-create view total_daily_stats as 
-select
-	date(created_at) as stats_date,
-	count(*) as total_entries,
-	sum(daily_player) as total_players,
-	sum(classroom_visited) as total_classrooms_visited,
-	round(avg(developer_percent)) as total_developer_percent,
-	round(avg(system_engineers_percent)) as total_system_engineers_percent,
-	sec_to_time(sum(time_to_sec(visiting_time))) as total_visiting_time
-from statistics
-group by date(created_at);
-
+-- -----------------------------------------------------
+-- Table `samt3d`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `samt3d`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL UNIQUE,
+  `password` VARCHAR(255) NULL,
+  `email` VARCHAR(45) NULL UNIQUE,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

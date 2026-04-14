@@ -8,8 +8,7 @@ const getAllNpcDescription = async () => {
 }
 
 const getNpcDescription = async (npcId) => {
-    // const SERVER_IP = '10.4.0.21';
-    const SERVER_IP = '127.0.0.1';
+    const SERVER_IP = '10.4.0.21';
     const PORT = '4000';
     const npcData = await prisma.npcs.findUnique({
         where: {

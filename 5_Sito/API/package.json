@@ -5,14 +5,19 @@
   "license": "ISC",
   "author": "Sebastiano de Bertoldi",
   "type": "commonjs",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/prisma": "^5.0.4",
     "@prisma/client": "^6.19.2",
+    "adminjs": "^7.8.17",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "helmet": "^8.1.0",
     "nodemon": "^3.1.11",
     "prisma": "^6.19.2",
